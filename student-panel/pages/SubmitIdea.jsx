@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const SubmitIdea = () => {
   const [projectName, setProjectName] = useState('');
@@ -8,6 +8,20 @@ const SubmitIdea = () => {
   const [members, setMembers] = useState([]);
   const [memberInput, setMemberInput] = useState('');
   const [errors, setErrors] = useState({});
+  const [draftSaved, setDraftSaved] = useState(false);
+
+  // Load draft data on component mount
+  useEffect(() => {
+    const savedDraft = localStorage.getItem('submitIdeaDraft');
+    if (savedDraft) {
+      const draftData = JSON.parse(savedDraft);
+      setProjectName(draftData.projectName || '');
+      setSession(draftData.session || '');
+      setLeaderName(draftData.leaderName || '');
+      setDescription(draftData.description || '');
+      setMembers(draftData.members || []);
+    }
+  }, []);
 
   const handleAddMember = (e) => {
     if (e.key === 'Enter') {
@@ -48,6 +62,20 @@ const SubmitIdea = () => {
     
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSaveDraft = () => {
+    const draftData = {
+      projectName,
+      session,
+      leaderName,
+      description,
+      members,
+      savedAt: new Date().toISOString()
+    };
+    localStorage.setItem('submitIdeaDraft', JSON.stringify(draftData));
+    setDraftSaved(true);
+    setTimeout(() => setDraftSaved(false), 3000);
   };
 
   const handleSubmit = (e) => {
@@ -99,6 +127,9 @@ const SubmitIdea = () => {
     setMembers([]);
     setMemberInput('');
     setErrors({});
+    
+    // Clear draft after successful submission
+    localStorage.removeItem('submitIdeaDraft');
   };
 
   return (
@@ -110,6 +141,14 @@ const SubmitIdea = () => {
             Share your innovation with the faculty for review.
           </p>
         </div>
+        {draftSaved && (
+          <div className="si-draft-success">
+            <span className="material-symbols-outlined si-draft-success-icon">
+              check_circle
+            </span>
+            Draft Saved Successfully
+          </div>
+        )}
       </div>
 
       <div className="si-card">
@@ -224,6 +263,7 @@ const SubmitIdea = () => {
               <button
                 type="button"
                 className="si-btn-secondary"
+                onClick={handleSaveDraft}
               >
                 Save Draft
               </button>
