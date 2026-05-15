@@ -17,7 +17,7 @@ function MainDashboard() {
           margin: 0;
           padding: 0;
           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          background: linear-gradient(135deg, #edf5f4 0%, #d6eaf5 100%);
           min-height: 100vh;
         }
         
@@ -84,7 +84,7 @@ function MainDashboard() {
         }
         
         .student-panel {
-          background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+          background: linear-gradient(135deg, #3b82f6 0%, #5586f1 100%);
           color: white;
         }
         
@@ -93,7 +93,7 @@ function MainDashboard() {
         }
         
         .teacher-panel {
-          background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+          background: linear-gradient(135deg, #10b981 0%, #15cc92 100%);
           color: white;
         }
         
@@ -102,7 +102,7 @@ function MainDashboard() {
         }
         
         .admin-panel {
-          background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+          background: linear-gradient(135deg, #8b5cf6 0%, #7558a7 100%);
           color: white;
         }
         
