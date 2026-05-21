@@ -253,12 +253,6 @@ const SubmitIdea = () => {
           </div>
 
           <div className="si-footer-row">
-            <button
-              type="button"
-              className="si-btn-cancel"
-            >
-              Cancel
-            </button>
             <div className="si-footer-actions">
               <button
                 type="button"
